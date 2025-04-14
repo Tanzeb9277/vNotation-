@@ -36,15 +36,35 @@ app.post('/api/videos', async (req, res) => {
   }
 
   try {
-    // Save the video in the database with just the YouTube ID
+    // Fetch video details from YouTube API
+    const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
+      params: {
+        part: 'snippet',
+        id: youtubeId,
+        key: process.env.YOUTUBE_API_KEY
+      }
+    });
+
+    if (!response.data.items || response.data.items.length === 0) {
+      return res.status(404).json({ message: 'Video not found on YouTube.' });
+    }
+
+    const videoDetails = response.data.items[0].snippet;
+    const videoTitle = videoDetails.title;
+    const thumbnailUrl = videoDetails.thumbnails?.default?.url;
+
+    // Save the video in the database
     const result = await pool.query(
-      'INSERT INTO videos (youtube_id) VALUES ($1) RETURNING *',
-      [youtubeId]
+      'INSERT INTO videos (youtube_id, title, thumbnail_url) VALUES ($1, $2, $3) RETURNING *',
+      [youtubeId, videoTitle, thumbnailUrl]
     );
 
     return res.status(201).json(result.rows[0]);
   } catch (error) {
     console.error('Error saving video:', error);
+    if (error.response?.status === 403) {
+      return res.status(500).json({ message: 'YouTube API key is invalid or quota exceeded.' });
+    }
     return res.status(500).json({ message: 'Internal server error' });
   }
 });
