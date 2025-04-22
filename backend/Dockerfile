@@ -18,4 +18,4 @@ RUN chmod +x init-db.sh
 COPY . .
 
 # Start the application with the init script
-CMD /bin/sh -c "./init-db.sh && npm start"
+CMD /bin/sh -c "./init-db.sh && npm run dev"

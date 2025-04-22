@@ -1,0 +1,156 @@
+.timestamp {
+  color: #4a90e2;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0 2px;
+  border-radius: 2px;
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+.timestamp:hover {
+  background-color: rgba(74, 144, 226, 0.2);
+}
+
+textarea {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 8px;
+  border: none;
+  background: transparent;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.note-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  align-items: center;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background-color: #ddd;
+  margin: 0 4px;
+}
+
+.format-button,
+.timestamp-button,
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-size: 14px;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.format-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.format-button:hover {
+  background-color: #e0e0e0;
+}
+
+.format-button.active {
+  background-color: #e0e0e0;
+  border-color: #999;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button-icon {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.button-label {
+  white-space: nowrap;
+}
+
+.timestamp-button {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.timestamp-button:hover {
+  background-color: #357abd;
+}
+
+.save-button {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #27ae60;
+}
+
+.editor-content {
+  width: 100%;
+  min-height: 200px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  background-color: white;
+}
+
+.editor-content:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.editor-content[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #999;
+  pointer-events: none;
+} 
+
+.saved-notes {
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+.note-item {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.note-item .timestamp {
+  color: blue;
+  text-decoration: underline;
+}
